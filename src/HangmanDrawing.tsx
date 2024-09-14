@@ -84,10 +84,13 @@ const RIGHT_LEG = (
     }}
   />
 );
+
 const BODY_PARTS = [HEAD, BODY, LEFT_ARM, RIGHT_ARM, LEFT_LEG, RIGHT_LEG];
+
 type HangmanDrawingProps = {
   numberOfGuesses: number;
 };
+
 export default function HangmanDrawing({
   numberOfGuesses,
 }: HangmanDrawingProps) {

@@ -28,17 +28,19 @@ const KEYS = [
   "Y",
   "Z",
 ];
+
 type KeyboardProps = {
   disabled?: boolean;
   activeLetters: string[];
   inactiveLetters: string[];
   addGuessedLetter: (letter: string) => void;
 };
+
 export default function Keyboard({
   activeLetters,
-  disabled = false,
   inactiveLetters,
   addGuessedLetter,
+  disabled = false,
 }: KeyboardProps) {
   return (
     <div
