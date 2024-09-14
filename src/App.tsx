@@ -17,6 +17,7 @@ function App() {
   );
 
   const isLoser = incorrectGuesses.length >= 6;
+
   const isWinner = wordToGuess
     .split("")
     .every((letter) => guessedLetters.includes(letter));
@@ -32,19 +33,20 @@ function App() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const key = e.key;
+      const key = e.key.toUpperCase();
 
-      if (!key.match(/^[a-z]$/)) return;
+      if (!key.match(/^[A-Z]$/)) return;
 
       e.preventDefault();
       addGuessedLetter(key);
     };
+
     document.addEventListener("keypress", handler);
 
     return () => {
       document.removeEventListener("keypress", handler);
     };
-  }, [guessedLetters]);
+  }, [addGuessedLetter]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
