@@ -8,7 +8,7 @@ function getWord() {
   return words[Math.floor(Math.random() * words.length)];
 }
 function App() {
-  const [wordToGuess, setWordToGuess] = useState(getWord);
+  const [wordToGuess, setWordToGuess] = useState<string>(getWord);
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
@@ -80,8 +80,8 @@ function App() {
           textAlign: "center",
         }}
       >
-        {isWinner && "You Win! - Refresh to play again."}
-        {isLoser && "You Lose! - Refresh to try again."}
+        {isWinner && "You Win! - Press enter to play again."}
+        {isLoser && "You Lose! - Press enter to try again."}
       </div>
       <HangmanDrawing numberOfGuesses={incorrectGuesses.length} />
       <HangmanWord
