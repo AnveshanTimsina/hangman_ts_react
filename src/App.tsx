@@ -1,24 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import words from "./wordList.json";
+import HangmanDrawing from "./HangmanDrawing";
+import HangmanWord from "./HangmanWord";
+import Keyboard from "./Keyboard";
 
 function App() {
+  const [wordToGuess, setWordToGuess] = useState<string>(() => {
+    return words[Math.floor(Math.random() * words.length)];
+  });
+
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+
+  const incorrectGuesses = guessedLetters.filter(
+    (letter) => !wordToGuess.includes(letter)
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        maxWidth: "800px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "2rem",
+        margin: "0 auto",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          fontSize: "2rem",
+          textAlign: "center",
+        }}
+      >
+        Test text
+      </div>
+
+      <HangmanDrawing numberOfGuesses={incorrectGuesses.length} />
+      <HangmanWord guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
+      <div
+        style={{
+          alignSelf: "stretch",
+        }}
+      >
+        <Keyboard />
+      </div>- 
     </div>
   );
 }
